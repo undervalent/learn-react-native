@@ -1,5 +1,7 @@
+import { RestaurantInt } from "./restaurant";
 export interface UserInt {
   uid: string;
+  email: string;
 }
 
 export interface AuthInt {
@@ -12,9 +14,12 @@ export interface AuthInt {
   isAuthenticated: boolean;
 }
 
+interface OptionsInt {
+  restaurant: RestaurantInt;
+}
 export interface NavigationProps {
   navigation: {
     goBack(): void;
-    navigate(location: string): void;
+    navigate(location: string, options?: OptionsInt): void;
   };
 }

@@ -10,6 +10,7 @@ import {
   FavoritesBar,
   Loader,
   Spacer,
+  FadeInView,
 } from "../../../components";
 
 import { NavigationProps } from "../../../types";
@@ -38,7 +39,9 @@ export const RestaurantsScreen: React.FC<NavigationProps> = ({
               }
             >
               <Spacer position="bottom" size="large">
-                <RestaurantInfoCard restaurant={item} />
+                <FadeInView>
+                  <RestaurantInfoCard restaurant={item} />
+                </FadeInView>
               </Spacer>
             </TouchableOpacity>
           );

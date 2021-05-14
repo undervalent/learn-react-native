@@ -1,1 +1,2 @@
-export * from "./screens/settings.screen";
+export * from "./screens/settings/settings.screen";
+export * from "./screens/favorites/favorites.screen";

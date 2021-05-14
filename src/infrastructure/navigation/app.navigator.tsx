@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { generateIconForRoute } from "./utils";
 import { RestaurantNavigation } from "./restaurant.navigatior";
 import { MapScreen } from "../../features/map";
-import { Settings } from "../../features/settings";
+import { SettingsNavigator } from "./settings.navigator";
 import {
   LocationContextProvider,
   RestaurantsContextProvider,
@@ -38,7 +38,7 @@ export const AppNavigator = () => {
           >
             <Tab.Screen name="Restaurants" component={RestaurantNavigation} />
             <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={Settings} />
+            <Tab.Screen name="Settings" component={SettingsNavigator} />
           </Tab.Navigator>
         </RestaurantsContextProvider>
       </LocationContextProvider>
