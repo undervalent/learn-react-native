@@ -3,7 +3,7 @@ import { ScrollView } from "react-native";
 import { List } from "react-native-paper";
 
 import { SafeAreaWrapper } from "../../../../components/utility/safe-area.component";
-import { RestaurantInfoCard } from "../../components/restaurant-info.component";
+import { RestaurantInfoCard } from "../../components/restraunt-info/restaurant-info.component";
 
 export const RestaurantDetailScreen: React.FC = ({ route }) => {
   const [showBreakfast, setShowBreakfast] = React.useState(false);
