@@ -1,6 +1,6 @@
 import * as React from "react";
 import { List, Avatar } from "react-native-paper";
-
+import { TouchableOpacity } from "react-native";
 import { AuthenticationContext } from "../../../../services";
 import { SafeAreaWrapper, Spacer, Text } from "../../../../components";
 import { SettingsItem, AvatarContainer } from "./settings.style";
@@ -12,7 +12,9 @@ export const SettingsScreen: React.FC<NavigationProps> = ({ navigation }) => {
   return (
     <SafeAreaWrapper>
       <AvatarContainer>
-        <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
+        <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
+          <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
+        </TouchableOpacity>
         <Spacer position="top" size="large" />
         {user && <Text variant="label">{user.email}</Text>}
       </AvatarContainer>
