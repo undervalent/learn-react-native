@@ -1,9 +1,9 @@
 import * as React from "react";
 import { SvgXml } from "react-native-svg";
 
-import { RestaurantInt } from "../../../types";
-import { star, open } from "../../../../assets";
-import { Text, Spacer, Favorite } from "../../../components";
+import { RestaurantInt } from "../../../../types";
+import { star, open } from "../../../../../assets";
+import { Text, Spacer, Favorite } from "../../../../components";
 
 import {
   RestaurantCard,

@@ -2,15 +2,22 @@ import * as React from "react";
 
 import { FlatList, TouchableOpacity } from "react-native";
 
-import { Spacer } from "../../../components/spacer/spacer.component";
-import { RestaurantInfoCard } from "../components/restaurant-info.component";
-import { SafeAreaWrapper } from "../../../components/utility/safe-area.component";
+import { RestaurantInfoCard, Search } from "../components";
 import { RestaurantInt } from "../../../types";
 import { RestaurantsContext } from "../../../services";
-import { FavoritesBar, Loader } from "../../../components";
-import { Search } from "../components/search/search.component";
+import {
+  SafeAreaWrapper,
+  FavoritesBar,
+  Loader,
+  Spacer,
+  FadeInView,
+} from "../../../components";
 
-export function RestaurantsScreen({ navigation }) {
+import { NavigationProps } from "../../../types";
+
+export const RestaurantsScreen: React.FC<NavigationProps> = ({
+  navigation,
+}) => {
   const { restaurants, isLoading } = React.useContext(RestaurantsContext);
   const [isFavoritesToggled, setIsFavoritesToggled] = React.useState(false);
 
@@ -32,7 +39,9 @@ export function RestaurantsScreen({ navigation }) {
               }
             >
               <Spacer position="bottom" size="large">
-                <RestaurantInfoCard restaurant={item} />
+                <FadeInView>
+                  <RestaurantInfoCard restaurant={item} />
+                </FadeInView>
               </Spacer>
             </TouchableOpacity>
           );
@@ -44,6 +53,6 @@ export function RestaurantsScreen({ navigation }) {
       />
     </SafeAreaWrapper>
   );
-}
+};
 
 export default RestaurantsScreen;
