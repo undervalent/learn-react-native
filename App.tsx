@@ -17,12 +17,7 @@ import {
   APP_ID,
 } from "@env";
 
-import {
-  LocationContextProvider,
-  RestaurantsContextProvider,
-  FavoritesContextProvider,
-  AuthenticationContextProvider,
-} from "./src/services";
+import { AuthenticationContextProvider } from "./src/services";
 
 import { Navigation } from "./src/infrastructure/navigation";
 
@@ -54,13 +49,7 @@ export default function App() {
     <>
       <ThemeProvider theme={defaultTheme}>
         <AuthenticationContextProvider>
-          <FavoritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantsContextProvider>
-                <Navigation />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavoritesContextProvider>
+          <Navigation />
         </AuthenticationContextProvider>
       </ThemeProvider>
 

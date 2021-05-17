@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Searchbar } from "react-native-paper";
 import { SearchContainer } from "./search.styles";
-import { LocationContext } from "../../../../services/location/location.context";
+import { LocationContext } from "../../../../services";
 
 interface SearchProps {
   isFavoritesToggled: boolean;

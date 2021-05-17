@@ -2,6 +2,7 @@ import * as React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { RestaurantInt, FavoritesInt } from "../../types";
+import { AuthenticationContext } from "../../services";
 
 export const FavoritesContext = React.createContext<FavoritesInt>({
   favorites: [],
@@ -10,7 +11,9 @@ export const FavoritesContext = React.createContext<FavoritesInt>({
 });
 
 export const FavoritesContextProvider: React.FC = ({ children }) => {
+  const { user } = React.useContext(AuthenticationContext);
   const [favorites, setFavorites] = React.useState<RestaurantInt[] | []>([]);
+  console.log("USER -->", { user });
 
   const add = (restaurant: RestaurantInt) =>
     setFavorites([...favorites, restaurant]);
@@ -21,18 +24,18 @@ export const FavoritesContextProvider: React.FC = ({ children }) => {
     setFavorites(newFavorites);
   };
 
-  const saveFavorites = async (value: RestaurantInt[]) => {
+  const saveFavorites = async (value: RestaurantInt[], uid: string) => {
     try {
       const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("@favorites", jsonValue);
+      await AsyncStorage.setItem(`@favorites-${uid}`, jsonValue);
     } catch (e) {
       console.log(e);
     }
   };
 
-  const loadFavorites = async () => {
+  const loadFavorites = async (uid: string) => {
     try {
-      const value = await AsyncStorage.getItem("@favorites");
+      const value = await AsyncStorage.getItem(`@favorites-${uid}`);
       if (value !== null) {
         setFavorites(JSON.parse(value));
       }
@@ -41,13 +44,17 @@ export const FavoritesContextProvider: React.FC = ({ children }) => {
     }
   };
   React.useEffect(() => {
-    loadFavorites();
+    if (user) {
+      loadFavorites(user.uid);
+    }
     return () => {};
-  }, []);
+  }, [user]);
   React.useEffect(() => {
-    saveFavorites(favorites);
+    if (user) {
+      saveFavorites(favorites, user.uid);
+    }
     return () => {};
-  }, [favorites]);
+  }, [favorites, user]);
 
   return (
     <FavoritesContext.Provider
